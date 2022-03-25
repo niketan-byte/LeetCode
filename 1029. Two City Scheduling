@@ -1,0 +1,111 @@
+// class Solution {
+// public:
+//     int twoCitySchedCost(vector<vector<int>>& costs) {
+//         int counta=0;
+//         int countb=0;
+//         int n_sum=0;
+//         int ab_sum=0;
+//         int ans=0;
+//         int e_sum=0;
+//         for(int i=0;i<costs.size();i++)
+//         {
+//             if(costs[i][0]==costs[i][1])
+//             {
+//                  e_sum += costs[i][0];
+//             }
+//             ans = e_sum;
+//         }
+          
+//         for(int i=0;i<costs.size();i++)
+//         {
+//              if(costs[i][0]<costs[i][1])
+//              {
+//                  counta++;
+//                  n_sum += costs[i][0];
+//              }
+//             else{
+//                  countb++;
+//                  n_sum += costs[i][1];
+//             }
+//         }
+        
+        
+    
+//          if(counta==countb)
+//         {
+//             ans = n_sum;
+//         }
+//         else{
+//             int a = counta-countb;
+//             int b = countb-counta;
+//             if(countb>counta)
+//             {
+//                 vector<int>x;
+//                 for(int i=0;i<costs.size();i++)
+//                 {
+//                     x.push_back(costs[i][0]-costs[i][1]);
+//                 }
+//                 sort(x.begin(),x.end());
+//                 int i=0;
+//                while(countb!=counta )
+//                {  
+//                    if(x[i]>0){
+//                        // cout<<x[i]<<" ";
+//                        // cout<<countb<<" ";
+//                        ab_sum+=x[i];
+//                       counta++;
+//                        countb--;
+//                    }
+//                    i++;
+//             }
+//               ans = n_sum+ab_sum;  
+//             }
+//             if(counta>countb && countb!=counta){
+//                vector<int>x;
+//                 for(int i=0;i<costs.size();i++)
+//                 {
+//                     x.push_back(costs[i][1]-costs[i][0]);
+//                 }
+//                 sort(x.begin(),x.end());
+//                 int i=0;
+//                while(countb!=counta )
+//                {  
+//                    if(x[i]>0){
+//                        // cout<<x[i]<<" ";
+//                        // cout<<countb<<" ";
+//                        ab_sum+=x[i];
+//                       counta--;
+//                        countb++;
+//                    }
+//                    i++;
+//             }
+//               ans = n_sum+ab_sum;  
+//             }
+//         }
+//         return ans;
+//     }
+// };
+
+
+class Solution {
+public:
+    int twoCitySchedCost(vector<vector<int>>& costs) {
+// suppose saare A se hi gye (2n)
+// now calculate [1]-[0] so that after sorting we came to know that if negative value of refund means more refumd aap A se galat chale gye so add it (kyunki negative he)
+        
+        vector<int> a;  // refund 
+        int res=0;
+        
+        for(int i=0;i<costs.size();i++)
+        {
+            res+=costs[i][0];
+            a.push_back(costs[i][1]-costs[i][0]);
+        }
+        sort(a.begin(),a.end());
+        for(int i=0;i<costs.size()/2;i++)
+        {
+            res+=a[i];
+        }
+        return res;
+    }
+};
