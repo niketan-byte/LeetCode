@@ -1,0 +1,37 @@
+class Solution {
+public:
+    int minOperations(vector<vector<int>>& grid, int x) {
+        // bool flag=1;
+        int c=0;
+        vector<int>a;
+        int m=grid.size(),n=grid[0].size();
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                // c = (grid[i][j])%x;
+                a.push_back(grid[i][j]);
+            }
+        }
+        // int min_counter=INT_MAX;
+        sort(a.begin(),a.end());
+        int target = a[m*n/2];
+            int ans=0;
+        // cout<<target<<" ";
+        // if(c==0)
+        // {
+            
+            for(int i=m*n-1;i>=0;i--)
+            {
+                if(abs(a[i]-target)%x!=0)
+                { return -1;}
+            else
+            {ans+=abs(a[i]-target)/x;}  
+            }
+        // }
+        // else{
+        //     return -1;
+        // }
+        return ans;
+    }
+};
