@@ -1,29 +1,96 @@
+// class Solution {
+// public:
+//     bool search(vector<int>& nums, int target) {
+//         int high,low;
+//         low=0;
+//         high=nums.size()-1;
+        
+//         // while(low<high)
+//         // {
+//         //     int mid = low + (high-low)/2;
+//         //     if(nums[mid]>nums[high])
+//         //     {
+//         //         low=mid+1;
+//         //     }
+//         //     else{
+//         //         high=mid;
+//         //     }
+//         // }
+        
+        
+//         for(int i=0;i<nums.size();i++)
+//         {
+//             if(nums[i]==target)
+//             {
+//                 return true;
+//             }
+//         }
+//         return false;
+//     }
+// };
+
 class Solution {
 public:
     bool search(vector<int>& nums, int target) {
         int high,low;
         low=0;
         high=nums.size()-1;
-        
-        // while(low<high)
-        // {
-        //     int mid = low + (high-low)/2;
-        //     if(nums[mid]>nums[high])
-        //     {
-        //         low=mid+1;
-        //     }
-        //     else{
-        //         high=mid;
-        //     }
-        // }
-        
-        
-        for(int i=0;i<nums.size();i++)
+        int rot,count=0;
+   for(int i=0;i<nums.size()-1;i++)
         {
-            if(nums[i]==target)
+            if(nums[i]<=nums[i+1])
             {
-                return true;
+                count++;
             }
+       else{
+           rot=count;
+           break;
+       }
+        }
+        // cout<<rot;
+
+        if(nums[rot]>=target && nums[0]<=target)
+        {
+            low=0;
+            high=rot;
+            while(low<=high)
+            {
+                int mid=low+(high-low)/2;
+                if(nums[mid]==target)
+                {
+                    return true;
+                }
+                else if(nums[mid]>target)
+                {
+                    high=mid-1;
+                }
+                else{
+                    low=mid+1;
+                }
+                
+            }
+            return false;
+        }
+        else{
+             low=rot+1;
+            high=nums.size()-1;
+            while(low<=high)
+            {
+                int mid=low+(high-low)/2;
+                if(nums[mid]==target)
+                {
+                    return true;
+                }
+                else if(nums[mid]>target)
+                {
+                    high=mid-1;
+                }
+                else{
+                    low=mid+1;
+                }
+                
+            }
+            return false;
         }
         return false;
     }
