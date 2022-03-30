@@ -1,0 +1,53 @@
+// class Solution {
+// public:
+//     int singleNumber(vector<int>& nums) {
+//         sort(nums.begin(),nums.end());
+      
+//          if(nums.size()==1)
+//             {
+//                 return nums[0];
+//             }
+//          int ans;
+// //         for(int i=0;i<nums.size()/2;i+=2)
+// //         {
+           
+// //             if(nums[i]!=nums[i+2])
+// //             {
+// //                 ans=nums[i];
+// //                 cout<<ans<<" ";
+// //                 break;
+// //             }
+// //         }
+//         int count=0;
+//         for(int i=0;i<nums.size();i++)
+//         {
+//             if(nums[i]!=nums[i+1])
+//             {
+//                 count--;
+//                 if(count==-1)
+//                 {
+//                     ans=nums[i];
+//                     break;
+//                 }
+//             }
+//             else{
+//                 count++;
+//             }
+//         }
+//         return ans;
+//     }
+// };
+
+
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int ans=0;
+    for(int i=0;i<nums.size();i++)
+    {
+        ans = nums[i]^ans;
+       
+    }
+        return ans;
+    }
+};
