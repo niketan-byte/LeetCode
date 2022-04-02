@@ -1,0 +1,131 @@
+// class Solution {
+// public:
+//      bool isPalindrome(string s)
+//     {
+//         // // Two pointer
+//         // // int j=s.length()-1;
+//         // // int i=0;
+//         // if (s.empty()) return true; 
+//         // while(i<j)
+//         // {
+//         //     if(!isalnum(s[i]))
+//         //     {
+//         //         i++;
+//         //         continue;
+//         //     }
+//         //     if(!isalnum(s[j]))
+//         //     {
+//         //         j--;
+//         //         continue;
+//         //     }
+//         //     if(tolower(s[i++])!= tolower(s[j--]))
+//         //     {
+//         //         return false;
+//         //     }
+//         string P = s;
+ 
+   
+//     reverse(P.begin(), P.end());
+ 
+//     if (s == P) {
+
+//         return true;
+//     }
+//     return false;
+         
+//         }
+       
+//     bool validPalindrome(string s) {
+//         // int j=s.length()-1;
+//         // int i=0;
+//        bool f = isPalindrome(s);
+//         if(f)
+//         {
+//             return true;
+//         }
+//         else{            
+            
+//             for(int i=0;i<s.length();i++){
+//                 string a = s;
+//                 a.erase(a.begin() + i);
+//                 cout<<a<<" ";
+//             bool f = isPalindrome(a);
+//                 if(f)
+//                 {
+//                     return true;
+//                 }
+//             }
+//         }
+//         return false; 
+//     }
+// };
+
+
+
+
+// class Solution {
+// public:
+//     bool validPalindrome(string s) {
+//         return helper(s, 0, s.length()-1, 1);
+//     }
+    
+//     bool helper(string &s, int l, int r, int d) {
+//         if(l >= r)
+//             return true;
+        
+//         if(s[l] == s[r]) return helper(s, l+1, r-1, d);
+//         else return d > 0 && (helper(s, l+1, r, d-1) || helper(s, l, r-1, d-1));
+//     }
+// };
+
+
+
+
+// class Solution {
+// public:
+//      bool validPalindrome(string s)
+//     {
+//          int count=0;
+//          int count2=0;
+//          int l=0;
+//          int r=s.length()-1;
+//      while(l<=r){
+//          if(s[l]==s[r]){
+//             count++; 
+//             l++,r--;
+//      }
+//          else{
+//              count2++;
+//              l++;r--;
+//          }
+//      }
+//          cout<<count<<" "<<count2;
+//          if((count2<1 && count>=1) || (count2+count==s.length()/2))
+//          {
+//              return true;
+//          }
+//          return false;
+//      }
+// };
+
+
+class Solution {
+public:
+    bool validPalindrome(string s) {
+        return helper(s, 0, s.size() - 1, 0);
+    }
+    
+    bool helper(string& s, int lo, int hi, int count) {
+        if (count > 1)
+            return false;
+        while (lo < hi) {
+            if (s[lo] == s[hi]) 
+                lo++, hi--;
+            
+                 else {
+                return helper(s, lo + 1, hi, count + 1) || helper(s, lo, hi - 1, count + 1);
+            }
+        }
+        return true;
+    }
+};
