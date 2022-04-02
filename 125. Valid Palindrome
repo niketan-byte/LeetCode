@@ -1,0 +1,57 @@
+// class Solution {
+// public:
+//     bool isPalindrome(string s) {
+//         int j = 0;
+//         transform(s.begin(), s.end(), s.begin(), ::tolower);
+
+//                 size_t i = 0;
+//                size_t len = s.length();
+//                 while(i < len){
+//                 if (!isalnum(s[i]) || s[i] == ' '){
+//                  s.erase(i,1);
+//                   len--;
+//                     }else
+//                     i++;  
+//                     }
+//         // reverse wali method
+        
+//         for (int i = 0; i < s.length() / 2; i++) {
+
+//         if (s[i] != s[s.length() - i - 1]) {
+            
+//             return false;
+//         }
+//     }
+            
+//         return true;
+//     }
+// };
+
+class Solution {
+  public:
+    bool isPalindrome(string s)
+    {
+        // Two pointer
+        int j=s.length()-1;
+        int i=0;
+        if (s.empty()) return true; 
+        while(i<j)
+        {
+            if(!isalnum(s[i]))
+            {
+                i++;
+                continue;
+            }
+            if(!isalnum(s[j]))
+            {
+                j--;
+                continue;
+            }
+            if(tolower(s[i++])!= tolower(s[j--]))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+};
