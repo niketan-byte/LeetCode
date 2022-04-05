@@ -1,0 +1,34 @@
+class Solution {
+public:
+    int mostWordsFound(vector<string>& sentences) {
+        int s=sentences.size();
+        int ans=0,curr;
+        for(int i=0;i<s;i++)
+        {  curr=0;
+            for(int j=0;j<sentences[i].size();j++)
+            {
+                if(sentences[i][j]==' ')
+                {
+                    curr++;
+                }
+            }
+         ans = max(ans,curr);
+        }
+        return ans+1;
+    }
+};
+
+
+  
+
+// class Solution {
+// public:
+//     int mostWordsFound(vector<string>& sentences) {
+//         int res = 0;
+//         for (auto &s: sentences) {
+//             int n = count(s.begin(), s.end(), ' ');
+//             res = max(res, n + 1);
+//         }
+//         return res;
+//     }
+// };
