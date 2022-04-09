@@ -1,0 +1,109 @@
+// class Solution {
+// public:
+//     vector<int> topKFrequent(vector<int>& nums, int k) {
+//   unordered_map<int,int>mp;
+//         for(int i=0;i<nums.size();i++)
+//         {
+//             mp[nums[i]]++;
+//         }
+//         vector<int>ans;
+//         // pair<first, second>: first is frequency,  second is number
+//         priority_queue<pair<int,int>>pq;
+//         for(auto i=mp.begin();i!=mp.end();i++)
+//         {
+//             pq.push(make_pair(i->second,i->first));
+//             if(pq.size() > (int)mp.size() - k){
+//                 ans.push_back(pq.top().second);
+//                 pq.pop();
+//             }
+//         }
+//         return ans;
+//     }
+// };
+
+
+
+/* class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        map<int,int>mp;
+       for(int i=0;i<nums.size();i++)
+       {
+           int presentSize = mp.size();
+           if(mp[nums[i]]==0 && presentSize==k)
+           {
+               break;
+           }
+           mp[nums[i]]++;
+       }
+        vector<vector<int>>ans;
+        map<int,int> :: iterator it;
+        for(it = mp.begin();it!=mp.end();it++)
+        {
+            if(it->second!=0)
+            {
+                // pair<int,int>p;
+                // p.first = it->second;
+                // p.second = it->first;
+                ans.push_back(make_pair(it->second,it->first));
+            }
+        }
+        sort(ans.begin(),ans.end(),greater<pair<int,int>>());
+        vector<int> res;
+        vector<int,int> :: iterator it1;
+        int l=0;
+        for(it1=ans.begin();it1!=ans.end();it1++)
+        {  
+            res[i]=it->second;
+            l++;
+        }
+        return res;
+    }
+};*/
+
+
+// Using Bucket Sort
+// class Solution {
+// public:
+//     vector<int> topKFrequent(vector<int>& nums, int k) {
+//         vector<int> res;
+//         if (!nums.size()) return res;
+//         unordered_map<int, int> fa;
+//         for (auto num : nums) fa[num]++;
+//         vector<vector<int>> bucket(nums.size() + 1);
+//         for (auto kv : fa) {
+//             bucket[kv.second].push_back(kv.first);
+//         }
+
+//         for (int i = bucket.size() - 1; i >= 0; --i) {
+//             for (int j = 0; j < bucket[i].size(); ++j){
+//                 res.push_back(bucket[i][j]);
+//                 if (res.size() == k) return res;
+//             }
+//         }
+
+//         return res;
+//     }
+// };
+
+
+// Best solution
+// Using Heap
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+        unordered_map<int, int> cnt;
+        for (auto num : nums) cnt[num]++;
+        for (auto kv : cnt) {
+            pq.push({kv.second, kv.first});
+            while (pq.size() > k) pq.pop();
+        }
+        vector<int> res;
+        while (!pq.empty()) {
+            res.push_back(pq.top().second);
+            pq.pop();
+        }
+        return res;
+    }
+};
