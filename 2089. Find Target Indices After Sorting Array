@@ -1,0 +1,40 @@
+// class Solution {
+// public:
+//     vector<int> targetIndices(vector<int>& nums, int target) {
+//         sort(nums.begin(),nums.end());
+//         vector<int>ans;
+//         bool flag=0;
+//         for(int i=0;i<nums.size();i++)
+//         {
+//             if(nums[i]==target)
+//             {
+//                 ans.push_back(i);
+//             }
+//             if(target<nums[i])
+//             {
+//                 break;
+//             }
+//         }
+//         return ans;
+//     }
+// };
+
+
+class Solution {
+public:
+    vector<int> targetIndices(vector<int>& nums, int target) {
+        sort(nums.begin(),nums.end());
+        vector<int>ans;
+        vector<int>::iterator a,b;
+          a = std::lower_bound(nums.begin(), nums.end(), target);
+        b = std::upper_bound(nums.begin(), nums.end(), target);
+        
+        int x = a-nums.begin();
+            int y = b-nums.begin();
+        for(int i=x;i<y;i++)
+        {
+            ans.push_back(i);
+        }
+        return ans;
+    }
+};
