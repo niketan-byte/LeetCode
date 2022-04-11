@@ -1,0 +1,36 @@
+class Solution {
+public:
+    vector<vector<int>> matrixReshape(vector<vector<int>>& mat, int r, int c) {
+        int m = mat.size();
+        int n = mat[0].size();
+        // vector<vector<int>>ans(r,vector<int>(c,0));
+        vector<vector<int>>a(r,vector<int>(c,0));
+        vector<int>ans;
+        if(r*c==m*n)
+          {        
+            for(int i=0;i<m;i++)
+                {
+                    for(int j=0;j<n;j++)
+                    {
+                        ans.push_back(mat[i][j]);
+                     }
+                }
+            int k=0;
+            for(int i=0;i<ans.size();i++)
+            {
+                cout<<ans[i]<<" ";
+            }
+            for(int i=0;i<r;i++)
+            {
+                for(int j=0;j<c;j++)
+                {
+                    
+                    a[i][j]=ans[k];
+                     k++;
+                }
+            }
+            return a;
+        }
+       return mat;
+    }
+};
