@@ -1,0 +1,17 @@
+class Solution {
+public:
+    vector<vector<int>> transpose(vector<vector<int>>& matrix) {
+        int m = matrix.size();
+        int n = matrix[0].size();
+        vector<vector<int>>ans(n,vector<int>(m,0));
+        int i,j;
+        for(int col=0,i=0;col<n,i<n;col++,i++)
+        {   
+            for(int row=0,j=0;row<m,j<m;row++,j++)
+            {
+                ans[i][j]=matrix[row][col];
+            }
+        }
+        return ans;
+    }
+};
