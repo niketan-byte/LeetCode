@@ -1,0 +1,22 @@
+class Solution {
+public:
+   
+    int subtractProductAndSum(int n) {
+         
+        vector<int>v;
+        while(n>0){
+            int r=n%10;
+            n=n/10;
+        v.push_back(r);
+            }
+        
+        int product=1;
+        int s=0;
+        for(int i=0;i<v.size();i++)
+        {
+            product = product*v[i];
+            s=s+v[i];
+        }
+        return product-s;
+    }
+};
