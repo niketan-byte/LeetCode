@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool squareIsWhite(string coordinates) {
+       int i = int(coordinates[0]);
+       int j = coordinates[1]-'0';
+        if((i+j)%2==0)
+        {
+            return false;
+        }
+        return true;
+    }
+};
+
+
+
+// 97	a lowercase a	
+// 98	b lowercase b
+// 99	c lowercase c	
+// 100	d lowercase d	
+// 101	e lowercase e
+// 102	f lowercase f	
+// 103	g lowercase g	
+// 104	h lowercase h
