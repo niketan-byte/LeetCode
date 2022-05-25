@@ -1,0 +1,61 @@
+// class Solution {
+// public:
+//     int reverse(int x) {
+//         if(x>= 2147483647)
+//             {
+//                 return 0;
+//             }
+//         if(x<= -2147483648)
+//             {
+//                 return 0;
+//             }
+//         long long rev=0;
+//         long long r;
+//         long long n=x;
+//         if(x>0)
+//         {
+//             while(n!=0)
+//             {
+//                 r = n%10;
+//                 rev = rev*10 + r;
+//                 n = n/10;
+//             }
+//             if(rev>2147483647)
+//             {
+//                 return 0;
+//             }
+//             else{
+//                 return rev;
+//             }
+//         }
+       
+//          n = -1*x;
+//         while(n!=0)
+//             {
+//                 r = n%10;
+//                 rev = rev*10 + r;
+//                 n = n/10;
+//             }
+//         rev = -1*rev;
+//             if(rev< -2147483648)
+//             {
+//                 return 0;
+//             }
+            
+//                 return rev;
+            
+//     }
+// };
+
+
+class Solution {
+public:
+    int reverse(int x) {
+        long long res = 0;
+        while(x) {
+            res = res*10 + x%10;
+            x /= 10;
+        }
+        return (res<INT_MIN || res>INT_MAX) ? 0 : res;
+    }
+};
