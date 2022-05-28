@@ -16,3 +16,21 @@ int missingNumber(vector<int>& nums) {
     return n * (n+1) / 2 - accumulate(begin(nums), end(nums), 0);
 }
  };
+
+
+class Solution{
+  public:
+    int missingNumber(vector<int>& nums)
+    {
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<nums.size();i++)
+        {
+            if(nums[i]!=i && nums[i]!=0)
+            {
+                return i;
+            }
+            
+        }
+        return nums.size();
+    }
+};
