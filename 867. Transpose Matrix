@@ -1,15 +1,69 @@
+// class Solution {
+// public:
+//     vector<vector<int>> transpose(vector<vector<int>>& matrix) {
+//         int m = matrix.size();
+//         int n = matrix[0].size();
+//         vector<vector<int>>ans(n,vector<int>(m,0));
+//         int i,j;
+//         for(int col=0,i=0;col<n,i<n;col++,i++)
+//         {   
+//             for(int row=0,j=0;row<m,j<m;row++,j++)
+//             {
+//                 ans[i][j]=matrix[row][col];
+//             }
+//         }
+//         return ans;
+//     }
+// };
+
+
+// class Solution {
+// public:
+//     vector<vector<int>> transpose(vector<vector<int>>& matrix) {
+//         int m = matrix.size();
+//         int n = matrix[0].size();
+//         vector<vector<int>>ans(n,vector<int>(m,0));
+
+//         for(int row=0;row<m;row++)
+//         {   
+//             for(int col=0;col<n;col++)
+//             {
+//                 ans[col][row]=matrix[row][col];
+//             }
+//         }
+//         return ans;
+//     }
+// };
+
+
 class Solution {
 public:
     vector<vector<int>> transpose(vector<vector<int>>& matrix) {
-        int m = matrix.size();
-        int n = matrix[0].size();
-        vector<vector<int>>ans(n,vector<int>(m,0));
-        int i,j;
-        for(int col=0,i=0;col<n,i<n;col++,i++)
-        {   
-            for(int row=0,j=0;row<m,j<m;row++,j++)
+      int m=matrix.size();
+      int n=matrix[0].size();
+        int temp;
+        
+        if(n==m){
+        for(int i=0;i<m;i++)
+        {
+            for(int j=i+1;j<n;j++)
             {
-                ans[i][j]=matrix[row][col];
+                
+                temp = matrix[i][j];
+                matrix[i][j]=matrix[j][i];
+                matrix[j][i]=temp;
+            
+            }
+        }
+        return matrix;
+        }
+        vector<vector<int>>ans(n,vector<int>(m,0));
+       
+        for(int row=0;row<m;row++)
+        {   
+            for(int col=0;col<n;col++)
+            {
+                ans[col][row]=matrix[row][col];
             }
         }
         return ans;
