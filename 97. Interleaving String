@@ -1,0 +1,60 @@
+class Solution {
+public:
+    bool isInterleave(string s1, string s2, string s3) {
+        int n = s1.size();
+        int m = s2.size();
+        if(s3.size()!= n+m)
+        {
+            return false;
+        }
+        vector<vector<int>>dp(n+1,vector<int>(m+1));
+        for(int k=1;k<=n;k++)
+        {
+            
+            if(s1[k-1]==s3[k-1])
+            {
+                dp[k][0]=1;
+            }
+            else{
+             break;   
+            }
+        }
+          for(int k=1;k<=m;k++)
+        {
+            
+            if(s2[k-1]==s3[k-1])
+            {
+                dp[0][k]=1;
+            }
+            else{
+             break;   
+            }
+        }
+        dp[0][0]=1;
+        for(int i=1;i<=n;i++)
+        {
+            for(int j=1;j<=m;j++)
+            {
+                if(s1[i-1]==s3[i+j-1] && dp[i-1][j])
+                {
+                    dp[i][j]=1;
+                }
+                if(s2[j-1]==s3[i+j-1] && dp[i][j-1])
+                {
+                    dp[i][j]=1;
+                }
+            }
+        }
+        
+        // for(int i=0;i<=n;i++)
+        // {
+        //     for(int j=0;j<=m;j++)
+        //     {
+        //         cout<<dp[i][j]<<" ";
+        //     }
+        //     cout<<endl;
+        // }
+        
+        return dp[n][m];
+    }
+};
