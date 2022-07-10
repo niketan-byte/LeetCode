@@ -1,0 +1,58 @@
+// class Solution {
+// public:
+//     int minCostClimbingStairs(vector<int>& cost) {
+//        int i=0;
+//         if(cost[0]<cost[1])
+//        {
+//            i=0;
+//        }
+//         else if(cost[0]==cost[1])
+//         {
+//             i=1;
+//         }
+//         else{
+//             i=1;
+//         }
+//         int sum = cost[i];
+//         cout<<sum<<" ";
+//         while(i<=cost.size()-2)
+//         {
+//             if(cost[i+1]<cost[i+2])
+//             {
+//                 i += 1;
+//             }
+//             else if(cost[i+1]==cost[i+2])
+//             {
+//                 i += 2;
+//             }
+//             else{
+//                 i+=2;
+//             }
+//             sum += cost[i];
+//             cout<<sum<<" ";
+//         }
+//         cout<<endl;
+//         return sum;
+//     }
+// };
+
+
+class Solution {
+public:
+    int minCostClimbingStairs(vector<int>& cost) {
+     int n = cost.size();
+     int first = cost[0];
+     int second = cost[1];
+     if(n<=2)
+     {
+         return min(first,second);
+     }
+     for(int i=2;i<n;i++)
+     {
+         int curr = cost[i] + min(first,second);
+         first = second;
+         second = curr;
+     }
+        return min(first,second);
+    }
+};
