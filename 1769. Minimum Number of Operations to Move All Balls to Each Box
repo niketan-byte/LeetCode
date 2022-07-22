@@ -1,0 +1,57 @@
+// class Solution {
+// public:
+//     vector<int> minOperations(string boxes) {
+//         int n = boxes.size();
+//         vector<int>ans;
+//         for(int i=0;i<n;i++)
+//         {  int res=0;
+//             for(int j=0;j<n;j++)
+//             {
+//                 if(boxes[j]=='1'){
+//                 res += abs(i-j);
+//                 }
+//             }
+//          ans.push_back(res);
+//         }
+//         return ans;
+//     }
+// };
+
+
+class Solution {
+public:
+    vector<int> minOperations(string boxes) {
+     int n = boxes.size();
+     vector<int>l(n,0),r(n+1,0),ans(n,0);
+     for(int i=1;i<n;i++)
+     {
+         if(boxes[i-1]=='1')
+         {
+             l[i] = l[i-1] + 1;
+             ans[0] += i-1;
+         }
+         else{
+             l[i] = l[i-1];
+         }
+     }
+        if(boxes[n-1]=='1')
+        {
+            ans[0] += n-1;
+        }
+        for(int i=n-1;i>=0;i--)
+        {
+            if(boxes[i]=='1')
+            {
+                r[i] = r[i+1]+1;
+            }
+            else{
+                r[i] = r[i+1];
+            }
+        }
+        for(int i=1;i<n;i++)
+        {
+            ans[i] = ans[i-1] + l[i]-r[i];
+        }
+        return ans;
+    }
+};
