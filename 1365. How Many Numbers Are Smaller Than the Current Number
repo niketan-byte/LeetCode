@@ -1,23 +1,49 @@
+// class Solution {
+// public:
+   
+//         vector<int> smallerNumbersThanCurrent(vector<int>& nums) {
+//         vector<int> answer;
+//         int i, j;
+//         int count[101] = {};
+//         for(i = 0; i < nums.size(); i++) {
+//             count[nums[i]]++;
+//         }
+//         for(i = 1; i < 101; i++) {
+//             count[i] += count[i - 1];
+//         }
+//         for(i = 0; i < nums.size(); i++) {
+//             if(nums[i] == 0)
+//                 answer.push_back(0);
+//             else
+//                 answer.push_back(count[nums[i] - 1]);
+                
+//         }
+//         return answer;
+//     }
+//     };
+
+
 class Solution {
 public:
-   
-        vector<int> smallerNumbersThanCurrent(vector<int>& nums) {
-        vector<int> answer;
-        int i, j;
-        int count[101] = {0, 0, 0};
-        for(i = 0; i < nums.size(); i++) {
-            count[nums[i]]++;
+    vector<int> smallerNumbersThanCurrent(vector<int>& nums) {
+    vector<int> answer;
+    map<int,int>mp;
+        for(int i=0;i<nums.size();i++)
+        {
+            mp[nums[i]]++;
         }
-        for(i = 1; i < 101; i++) {
-            count[i] += count[i - 1];
+        int c=0,temp=0;
+        for(auto i: mp)
+        {
+            temp = i.second;
+            mp[i.first] = c;
+            c += temp;
         }
-        for(i = 0; i < nums.size(); i++) {
-            if(nums[i] == 0)
-                answer.push_back(0);
-            else
-                answer.push_back(count[nums[i] - 1]);
-                
+        vector<int>ans(nums.size());
+        for(int i=0;i<nums.size();i++)
+        {
+            ans[i] = mp[nums[i]];
         }
-        return answer;
-    }
-    };
+        return ans;
+        }
+};
