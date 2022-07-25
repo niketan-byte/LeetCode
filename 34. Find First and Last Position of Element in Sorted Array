@@ -1,0 +1,80 @@
+// class Solution {
+// public:
+//     vector<int> searchRange(vector<int>& nums, int target) {
+//         int l=0;
+//         int r=nums.size()-1;
+//         vector<int>ans;
+//         while(l<r)
+//         {
+//             int mid = l + (r-l)/2;
+//             if(nums[mid]==target)
+//             {
+//                 int st=mid;
+//                 while(nums[st]==target)
+//                 {
+//                     st--;
+//                 }
+//                 int end=mid;
+//                 while(nums[end]==target)
+//                 {
+//                     end++;
+//                 }
+//                 ans.push_back(st+1);
+//                 ans.push_back(end-1);
+//                 return ans;
+//             }
+//             else if(nums[mid]>target)
+//             {
+//                 r=mid;
+//             }
+//             else{
+//                 l=mid+1;
+//             }
+//         }
+//         ans.push_back(-1);
+//         ans.push_back(-1);
+        
+//         return ans;
+//     }
+// };
+
+
+// 
+
+// class Solution {
+// public:
+//     vector<int> searchRange(vector<int>& nums, int target) {
+//      vector<int>ans;
+//         vector<int>::iterator a,b;
+//           a = lower_bound(nums.begin(), nums.end(), target);
+//         b = upper_bound(nums.begin(), nums.end(), target);
+        
+//         int x = a-nums.begin();
+//             int y = b-nums.begin()-1;
+//         ans.push_back(x);
+//         ans.push_back(y);
+//         return ans;       
+//     }
+// };
+
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+     vector<int>ans;
+        vector<int>::iterator a,b;
+          a = lower_bound(nums.begin(), nums.end(), target);
+        b = upper_bound(nums.begin(), nums.end(), target);
+        
+        int x=a-nums.begin();
+        int y=b-nums.begin();
+        if(a!=nums.end() && nums[x]==target)
+        ans.push_back(x);
+        else
+           ans.push_back(-1); 
+        if(b!=nums.begin() && nums[y-1]==target)
+        ans.push_back(y-1);
+        else
+            ans.push_back(-1);
+        return ans;       
+    }
+};
