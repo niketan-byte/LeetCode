@@ -1,0 +1,80 @@
+// class Solution {
+// public:
+//     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+//         vector<vector<int>>ans;
+//         map<int,int>mp;
+//        if(candidates.size()==1)
+//        {
+//            if(candidates[0]>target)
+//            {
+//                return ans;
+//            }
+//            vector<int>q(candidates[0]);
+//            ans.push_back(q);
+//            return ans;
+//        }
+//         vector<int>::iterator it;
+        
+//         for(int i=0;i<candidates.size();i++)
+//         {  vector<int>res;
+//             if(target%candidates[i]==0)
+//             {
+//                 int c = target/candidates[i];
+//                 while(c--)
+//                 {
+//                    res.push_back(candidates[i]);
+//                 }
+//                 ans.push_back(res);
+//             }
+//             if(target%candidates[i]!=0)
+//             {
+//                 int a = target/candidates[i];
+//                 int b = target - a*candidates[i];
+//                 it = find(candidates.begin(),candidates.end(),b);
+//                 if(it!=candidates.end())
+//                 {
+//                     res.push_back(b);
+//                     while(a--)
+//                     {
+//                         res.push_back(candidates[i]);
+//                     }
+//                     ans.push_back(res);
+//                 }
+//             }
+//         }
+//         return ans;
+//     }
+// };
+
+class Solution {
+public:
+     vector<vector<int>>ans;
+    void solve(int i,vector<int>&arr,vector<int>&temp,int target)
+    {
+        if(i==arr.size())
+        {
+            return;
+        }
+        if(target==0)
+        {
+            ans.push_back(temp);
+            return;
+        }
+        if(target<0)
+        {
+            return;
+        }
+        solve(i+1,arr,temp,target);  // increasing the index but not contribute in the target
+        temp.push_back(arr[i]);   // now include the  element
+        solve(i,arr,temp,target-arr[i]);  // again call but this time include it in the target but not increase the index because may be possible that this element again contribute
+        temp.pop_back();
+    }
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target)
+    {
+      ans.clear();
+        vector<int>temp;
+        solve(0,candidates,temp,target);
+        return ans;
+        
+    }
+};
