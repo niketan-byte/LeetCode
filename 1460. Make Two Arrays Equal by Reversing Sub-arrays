@@ -1,0 +1,30 @@
+// class Solution {
+// public:
+//     bool canBeEqual(vector<int>& target, vector<int>& arr) {
+//         unordered_map<int,int>mp;
+//         for(int i=0;i<target.size();i++)
+//         {
+//             mp[arr[i]]++;
+//             mp[target[i]]--;
+//         }
+         
+//         for(auto i:mp)
+//         {
+//             if(i.second)
+//             {
+//                 return false;
+//             }
+//         }
+//         return true;
+//     }
+// };
+
+class Solution {
+public:
+    bool canBeEqual(vector<int>& target, vector<int>& arr) {
+        sort(begin(target),end(target));
+        sort(begin(arr),end(arr));
+        
+        return target==arr;
+    }
+};
