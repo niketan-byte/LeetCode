@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int sumOfBeauties(vector<int>& nums) {
+       vector<int>p(nums.size());
+       vector<int>s(nums.size());
+       p[0] = nums[0];
+       s[nums.size()-1] =  nums[nums.size()-1];
+       for(int i=1;i<nums.size();i++)
+       {
+           p[i] = max(nums[i],p[i-1]);
+       }
+         for(int i=nums.size()-2;i>=0;i--)
+       {
+           s[i] = min(nums[i],s[i+1]);
+       }
+   int count=0;
+        
+        for(int i=1; i<nums.size()-1; i++)
+        {            
+            if(p[i-1] < nums[i] && nums[i] < s[i+1])
+            {
+                count+=2;
+            }
+            else if(nums[i-1] < nums[i] && nums[i] < nums[i+1])
+            {
+                count++;
+            }
+        }
+        
+        return count;
+    }
+};
