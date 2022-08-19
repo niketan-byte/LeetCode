@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<int> minSubsequence(vector<int>& nums) {
+        sort(nums.rbegin(),nums.rend());
+        vector<int>ans;
+        int tsum = accumulate(nums.begin(),nums.end(),tsum);
+        int psum=0;
+        int i=0;
+        while(psum<tsum)
+        {
+            ans.push_back(nums[i]);
+           
+            psum += nums[i];
+            tsum -= nums[i];
+            i++;
+        }
+        return ans;
+    }
+};
