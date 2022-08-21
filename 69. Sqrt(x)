@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int mySqrt(int x) {
+        long long int ans=0;
+        long long int inc=1;
+        int p=2;
+        // while(p--)
+        // {
+        while(ans*ans<=x)
+        {
+            ans+=inc;
+        }
+        
+        ans=ans-inc;                // ans = ans-1;
+    // inc = inc/10; 
+    //     }
+    // int res = ans;
+        
+    
+    
+      return ans; 
+}
+};
