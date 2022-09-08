@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int bulbSwitch(int n) {
+      int i=0;
+        if(n==0 || n==1)
+        {
+            return n;
+        }
+        while(i*i<=n && n>1)
+        {
+            i++;
+        }
+        return i-1;  
+    }
+};
