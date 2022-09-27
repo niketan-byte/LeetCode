@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int dominantIndex(vector<int>& nums) {
+        int mx1=INT_MIN;
+        int mx2=INT_MIN;
+        int idx=0;
+        for(int i=0;i<nums.size();i++)
+        {
+           if(nums[i]>mx1)
+           {
+               mx2=mx1;
+               mx1=nums[i]; 
+               idx=i;
+           }
+            else if(nums[i]>mx2){
+                mx2=nums[i];
+            }
+        }
+        if(mx1>=2*mx2)
+        {
+            return idx;
+        }
+        return -1;
+    }
+};
