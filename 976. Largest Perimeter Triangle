@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int largestPerimeter(vector<int>& nums) {
+       sort(nums.begin(),nums.end(),greater<int>());
+       int i=0,j=1,k=2;
+       int n = nums.size()-2;
+        for(int z=0;z<n;z++)
+        {
+            if(nums[z+2]+nums[z+1]>nums[z])
+            {
+                return nums[z]+nums[z+1]+nums[z+2];
+            }
+
+        }
+        return 0;
+    }
+    
+};
