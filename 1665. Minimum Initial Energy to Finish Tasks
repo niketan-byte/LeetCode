@@ -1,0 +1,22 @@
+class Solution {
+public:
+    bool static comp(vector<int>&t1,vector<int>&t2)
+    {
+        return t1[1]-t1[0]>t2[1]-t2[0];
+    }
+    int minimumEffort(vector<vector<int>>& tasks) {
+      //  first let sort the difference of tasks in descending order
+        sort(tasks.begin(),tasks.end(),comp);
+        int energy=0,res=0;
+        for(auto &t:tasks)
+        {
+            if(energy<t[1])
+            {
+                res += t[1]-energy;
+                energy += t[1]-energy;
+            }
+            energy -= t[0];
+        }
+        return res;
+    }
+};
