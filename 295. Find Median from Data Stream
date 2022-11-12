@@ -1,0 +1,64 @@
+class MedianFinder {
+public:
+    // vector<int>nums;
+    priority_queue<int,vector<int>,greater<int>>minheap;  // descending
+    priority_queue<int>maxheap;  // ascending
+    MedianFinder() {
+        
+    }
+    
+    void addNum(int num) {
+//         if(nums.size()==0)
+//         {
+//  nums.push_back(num);
+//         }
+//         else{
+//             auto itr = lower_bound(nums.begin(),nums.end(),num);
+//             nums.insert(itr,num);
+//         }
+       
+       maxheap.push(num);
+       minheap.push(maxheap.top());
+       maxheap.pop();
+       if(minheap.size()>maxheap.size())
+       {
+           maxheap.push(minheap.top());
+           minheap.pop();
+       }
+
+    }
+    
+    double findMedian() {
+
+        // sorting leads to TLE
+        // sort(nums.begin(),nums.end());
+        // for(auto i:nums)
+        // {
+        //     cout<<i<<" ";
+        // }
+        // cout<<endl;
+        // int n = nums.size();
+        // if(n%2)
+        // {
+        //     return nums[n/2];
+        // }
+        // else{
+        // return (nums[n/2]+nums[(n/2)-1])/2.0;
+        // }
+        if(maxheap.size()==minheap.size())
+        {
+            return (maxheap.top()+minheap.top())/2.0;
+        }
+        else{
+            return maxheap.top();
+        }
+    }
+};
+
+/**
+ * Your MedianFinder object will be instantiated and called as such:
+ * MedianFinder* obj = new MedianFinder();
+ * obj->addNum(num);
+ * double param_2 = obj->findMedian();
+ */
+
