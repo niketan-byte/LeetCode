@@ -1,0 +1,49 @@
+// class Solution {
+// public:
+//     vector<vector<int>> findWinners(vector<vector<int>>& matches) {
+//         set<int>a;
+//         set<int>b;
+//         vector<int>c;
+//         for(int i=0;i<matches.size();i++)
+//         {
+//              a.insert(matches[i][0]);
+//              c.push_back(matches[i][1]);
+//              b.insert(matches[i][1]);
+//         }
+//         vector<int> w;
+//         set_difference(a.begin(), a.end(), b.begin(), b.end(),inserter(w, w.end()));
+        
+
+//         // vector<vector<int>>ans;
+//         // for(auto)
+//         return ;
+//     }
+// };
+
+class Solution {
+public:
+    vector<vector<int>> findWinners(vector<vector<int>>& matches) {
+       map<int,int>mp;
+       for(auto m:matches)
+       {
+           if(!mp[m[0]])
+           {
+               mp[m[0]]=0;
+           }
+            mp[m[1]]++;
+       }
+       vector<int>zero,one;
+       for(auto[k,l]:mp)
+       {
+           if(l==0)
+           {
+               zero.push_back(k);
+           }
+           if(l==1)
+           {
+            one.push_back(k);
+           }
+       }
+       return {zero,one};
+    }
+};
