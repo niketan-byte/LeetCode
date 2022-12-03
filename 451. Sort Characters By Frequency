@@ -1,0 +1,39 @@
+// class Solution {
+// public:
+// bool cmp(pair<string,int>&a,pair<string,int>&b)
+// {
+//     return a.second<b.second;
+// }
+//     string frequencySort(string s) {
+//      map<char,int,greater<int>>mp;
+//      for(int i=0;i<s.size();i++)
+//      {
+//          mp[s[i]]++;
+//      } 
+   
+//     sort(A.begin(), A.end(), cmp);
+//       string ans=""; 
+//      for (auto i:mp)
+//      {
+//          for(int j=0;j<i.second;j++)
+//          {
+//              ans += i.first;
+//          }
+//          cout<<i.first<<" "<<i.second<<endl;
+//      }
+//      return ans;
+//     }
+// };
+
+class Solution {
+public:
+    string frequencySort(string s) {
+        int counts[256] = {0};
+        for (char ch : s)
+            ++counts[ch];
+        sort(s.begin(), s.end(), [&](char a, char b) { 
+            return counts[a] > counts[b] || (counts[a] == counts[b] && a < b); 
+        });
+        return s;
+    }
+};
