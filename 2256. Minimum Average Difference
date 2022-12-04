@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int minimumAverageDifference(vector<int>& nums) {
+        long long int tsum=0;
+        tsum = accumulate(nums.begin(),nums.end(),tsum);
+        long long int csum=0;
+        long long int n=nums.size();
+        long long int mx=INT_MAX;
+        long long int idx=0;
+        for(int i=0;i<n-1;i++)
+        {
+            csum+=nums[i];
+            long long int ans = abs(csum/(i+1)-(tsum-csum)/(n-i-1));
+            if(ans<mx)
+            {
+                mx=ans;
+                idx=i;
+            }
+           
+        } 
+        return mx>tsum/n?n-1:idx;
+    }
+};
