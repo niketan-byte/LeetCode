@@ -1,0 +1,23 @@
+class Solution {
+public:
+    string generateTheString(int n) {
+        string ans="";
+        if(n%2)
+        {
+            while(n--)
+            {
+                ans += 'a';
+            }
+            return ans;
+        }
+        else{
+            while(--n)
+            {
+                ans+='a';
+            }
+            ans+='b';
+             return ans;
+        }
+        return ans;
+    }
+};
