@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+        int gs_sum = accumulate(gas.begin(),gas.end(),0);
+        int ct_sum = accumulate(cost.begin(),cost.end(),0);
+        cout<<gs_sum<<" "<<ct_sum;
+        if(gs_sum-ct_sum<0)
+        {
+            return -1;
+        }
+
+
+        int idx=0;
+        int prev_gs=0;
+        for(int i=0;i<gas.size();i++)
+        {
+            prev_gs += gas[i]-cost[i];
+            if(prev_gs<0)
+            {
+                idx=i+1;
+                prev_gs=0;
+            }
+        }
+ return idx;
+    }
+};
