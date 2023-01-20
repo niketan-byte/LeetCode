@@ -1,0 +1,73 @@
+class Solution {
+public:
+    int maxTurbulenceSize(vector<int>& arr) {
+    //   vector<int>ans;
+    //   for(int i=0;i<arr.size()-1;i++)
+    //   {
+    //       bool flag1=1;
+    //       bool flag2=1;
+    //       int cnt1=0;
+    //       int cnt2=0;
+    //       for(int j=i;j<arr.size()-1;j++)
+    //       {
+    //           if(arr[i]>arr[i+1]){
+    //          if(arr[j]>arr[j+1] && flag1==1)
+    //          {
+    //              cnt1++;
+    //              flag1=0;
+    //              j++;
+    //          }   
+    //          else if(arr[j]<arr[j+1] && flag1==0)
+    //          {
+    //             cnt1++;
+    //             flag1=1;
+    //             j++;
+    //          }
+    //       }
+    //       if(arr[i]<arr[i+1])
+    //       {
+    //         if(arr[j]<arr[j+1] && flag2==1)
+    //          {
+    //              cnt2++;
+    //              flag2=0;
+    //              j++;
+    //          }   
+    //          else if(arr[j]>arr[j+1] && flag2==0)
+    //          {
+    //             cnt2++;
+    //             flag2=1;
+    //             j++;
+    //          }
+    //       }
+    //       }
+    //       ans.push_back(max(cnt1,cnt2));
+    //   }  
+    //   int res=1;
+    //   for(int i=0;i<ans.size();i++)
+    //   {
+    //       res=max(res,ans[i]);
+    //       cout<<ans[i]<<" ";
+    //   }
+    //   return res;
+
+int cnt=0;
+int ans=0;
+    for(int i=0;i<arr.size()-1;i++,cnt*=-1)
+    {
+        if(arr[i]>arr[i+1])
+        {
+           cnt = cnt>0?cnt+1:1;
+        }
+        else if(arr[i]<arr[i+1])
+        {
+          cnt = cnt<0?cnt-1:-1;
+        }
+        else{
+       cnt=0;
+        }
+     ans = max(ans,abs(cnt));   
+    }
+
+return ans+1;
+    }
+};
