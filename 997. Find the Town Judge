@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int findJudge(int n, vector<vector<int>>& trust) {       
+       vector<int>trusted(n+1,0);
+       vector<int>judges(n+1,0);
+        for(int i=0;i<trust.size();i++)
+        {
+          trusted[trust[i][0]]++;
+          judges[trust[i][1]]++;
+        }
+         for(int j=1;j<=n;j++)
+         {
+           if(trusted[j]==0 && judges[j]==n-1)
+           {
+               return j;
+           }
+         }     
+        return -1;
+    }
+};
