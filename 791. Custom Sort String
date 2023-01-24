@@ -1,0 +1,9 @@
+class Solution {
+public:
+    string customSortString(string order, string s) {
+        sort(s.begin(),s.end(),[&] (const char &a,const char &b){
+            return order.find(a)<order.find(b);
+        });
+        return s;
+    }
+};
