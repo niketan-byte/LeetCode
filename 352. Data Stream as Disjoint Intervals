@@ -1,0 +1,66 @@
+class SummaryRanges {
+public:
+   vector<int>nums;
+   unordered_map<int,int>mp;
+    SummaryRanges() {
+        
+    }
+    
+    void addNum(int value) {
+        if(mp[value])
+        {
+            return;
+        }
+        mp[value] = 1;
+        nums.push_back(value);
+        sort(nums.begin(),nums.end());
+    }
+    
+    vector<vector<int>> getIntervals() {
+        vector<vector<int>>res;
+
+        // using set and without sorting
+
+        int st=-1;
+        int end=-1;
+        for(auto num:nums)
+        {
+            if(end<0)
+            {
+                st=end=num;
+            }
+            else if(num-end==1)
+            {
+                end=num;
+            }
+            else{
+                res.push_back({st,end});
+                st=end=num;
+            }
+        }
+        res.push_back({st,end});
+        return res;
+
+        // using vector and map and sorting
+        // int n = nums.size();
+        // for(int i=0;i<n;i++)
+        // {
+        //     int st=nums[i];
+        //     while(i+1<n && nums[i+1]==nums[i]+1)
+        //     {
+        //         i++;
+        //     }
+           
+        //         res.push_back({st,nums[i]});
+    
+        // }
+        // return res;  
+    }
+};
+
+/**
+ * Your SummaryRanges object will be instantiated and called as such:
+ * SummaryRanges* obj = new SummaryRanges();
+ * obj->addNum(value);
+ * vector<vector<int>> param_2 = obj->getIntervals();
+ */
