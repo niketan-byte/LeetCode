@@ -63,3 +63,18 @@ public:
         return F[0][0];
     }
 };
+
+class Solution {
+public:
+    int fib(int n) {
+        vector<long>vec(31,0);
+        vec[0]=0;
+        vec[1]=1;
+        vec[2]=1;
+        for(int i=3;i<=30;i++)
+        {
+            vec[i]=vec[i-1]+vec[i-2];
+        }
+        return vec[n];
+    }
+};
