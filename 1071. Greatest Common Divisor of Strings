@@ -1,6 +1,28 @@
 class Solution {
 public:
+      // string gcd(string a,string b)
+    // {
+    //     if(a.size()==0)
+    //     {
+    //         return b;
+    //     }
+    //     if(b.size()==0)
+    //     {
+    //         return a;
+    //     }
+    //     if(a.size()<b.size())
+    //     {
+    //         return gcd(b,a);
+    //     }
+    //     if(a.substr(0,b.size())!=b)
+    //     {
+    //         return "";
+    //     }
+    //     return gcd(a.substr(b.size()),b);
+    // }
     string gcdOfStrings(string s1, string s2) {
+    // return gcd(str1,str2);
+    
         return (s1+s2==s2+s1)?s1.substr(0,gcd(size(s1),size(s2))):"";
     }
 };
