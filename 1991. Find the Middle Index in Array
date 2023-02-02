@@ -1,0 +1,39 @@
+class Solution {
+public:
+    int findMiddleIndex(vector<int>& nums) {
+    //    vector<int>lr(nums.size(),0);
+    //    vector<int>rl(nums.size(),0);
+    //    for(int i=1;i<nums.size();i++)
+    //    {
+    //        lr[i] += nums[i-1] + lr[i-1];
+    //    } 
+    //    for(int j=nums.size()-2;j>=0;j--)
+    //    {
+    //       rl[j] = nums[j+1] + rl[j+1];
+    //    }
+    //    int ans=-1;
+    //    for(int k=0;k<nums.size();k++)
+    //    {
+    //        if(lr[k]==rl[k])
+    //        {
+    //            ans=k;
+    //            break;
+    //        }
+    //    }
+    //    return ans;
+
+
+    int post = accumulate(nums.begin(),nums.end(),0);
+    int prefix = 0;
+    for(int i=0;i<nums.size();i++)
+    {
+        post -= nums[i];
+        if(post==prefix)
+        {
+            return i;
+        }
+        prefix += nums[i];
+    }
+    return -1;
+    }
+};
