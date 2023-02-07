@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int totalFruit(vector<int>& fruits) {
+     int res=0;
+     int curr=0;
+     int lastFruit=-1;
+     int slastFruit=-1;
+     int lastFruitcount=0;
+
+     for(auto i:fruits)
+     {
+         if(i==lastFruit || i==slastFruit)
+         {
+             curr++;
+         }
+         else{
+             curr = lastFruitcount+1;
+         }
+         if(i==lastFruit)
+         {
+             lastFruitcount++;
+         }
+         else{
+             lastFruitcount=1;
+         }
+         if(i!=lastFruit)
+         {
+             slastFruit=lastFruit;
+             lastFruit=i;
+         }
+         res = max(res,curr);
+     }
+     return res;
+    }
+};
