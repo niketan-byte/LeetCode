@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int jump(vector<int>& nums) {
+        int n=nums.size();
+        int farest=0;
+        int ans=0,i=0;
+        int maxReach=0;
+       while(farest<n-1)
+       {
+           maxReach= max(maxReach,i+nums[i]);
+           if(i==farest)
+           {
+               farest = maxReach;
+               ans++;
+           }
+           i++;
+       }
+       return ans;
+    }
+};
+
