@@ -1,18 +1,38 @@
 class Solution {
 public:
     long long pickGifts(vector<int>& gifts, int k) {
-       while(k--)
-       {
-    auto it = std::minmax_element(gifts.begin(), gifts.end());
-    int max_idx = std::distance(gifts.begin(), it.second);
+    //    while(k--)
+    //    {
+    // auto it = std::minmax_element(gifts.begin(), gifts.end());
+    // int max_idx = std::distance(gifts.begin(), it.second);
            
-          gifts[max_idx] = floor(sqrt(gifts[max_idx]));
-       }
-      long long int sum=0;
-        for(auto i:gifts)
-        {
-            sum += i;
-        }
-        return sum;
+    //       gifts[max_idx] = floor(sqrt(gifts[max_idx]));
+    //    }
+    //   long long int sum=0;
+    //     for(auto i:gifts)
+    //     {
+    //         sum += i;
+    //     }
+    //     return sum;
+        
+
+    priority_queue<int>pq;
+    for(auto i:gifts)
+    {
+        pq.push(i);
+    }
+    while(k--)
+    {
+        int temp = pq.top();
+        pq.pop();
+        pq.push(floor(sqrt(temp)));
+    }
+    long long int sum=0;
+    while(!pq.empty())
+    {
+        sum+=pq.top();
+        pq.pop();
+    }
+return sum;
         }
 };
