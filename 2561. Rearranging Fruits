@@ -1,0 +1,49 @@
+class Solution {
+public:
+    long long minCost(vector<int>& b1, vector<int>& b2) {
+        map<int,int>freq;
+        long long ans=0;
+        
+        for(auto b:b1)
+        {
+            freq[b]++;
+        }
+         for(auto b:b2)
+        {
+            freq[b]--;
+        }
+      long long mn=freq.begin()->first;
+        vector<long long>l;
+        vector<long long>r;
+        for(auto i:freq)
+        {
+    
+            if(i.second%2!=0)
+            {
+                return -1;
+            }
+            if(i.second>0)   // excess in basket 1
+            {
+                  int temp = i.second/2;
+                  while(temp-- > 0)
+                  {
+                      l.push_back(i.first);
+                  }
+            }
+            else if(i.second<0)   // excess in basket 2
+            { 
+                 int temp = -1*i.second/2;
+                 while(temp-- >0)
+                 {
+                  r.push_back(i.first);
+                 }
+            }
+        }
+       reverse(r.begin(),r.end());
+       for(int i=0;i<l.size();i++)
+       {
+           ans += min(2*mn,min(l[i],r[i]));
+       }
+        return ans;
+    }
+};
