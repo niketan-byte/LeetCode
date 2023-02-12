@@ -1,0 +1,25 @@
+class Solution {
+public:
+    long long findTheArrayConcVal(vector<int>& nums) {
+        int n = nums.size();
+        int i=0;
+        int j=n-1;
+        long long b=0;
+        while(i<=j)
+        {
+            string s="";
+            s += to_string(nums[i]);
+            s += to_string(nums[j]);
+
+            long long a = stoi(s);
+            if(i==j)
+            {
+                return b+nums[i];
+            }
+            b += a;
+           i++;
+            j--;
+        }
+        return b;
+    }
+};
