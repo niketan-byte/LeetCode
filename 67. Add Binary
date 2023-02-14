@@ -25,3 +25,39 @@ public:
         return ans;
     }
 };
+
+
+class Solution {
+public:
+    string addBinary(string a, string b) {
+        string ans="";
+       int s1 = a.size();
+       int s2 = b.size();
+       int carry=0;
+       if(s1<s2)
+       {
+            swap(s1,s2);
+            swap(a,b);
+       }
+       int d = s1-s2;
+       string str(d,'0');
+       b =str+b; 
+       for(int i=s1-1;i>=0;i--)
+       {
+           a[i] += b[i]-'0'+ carry;
+           if(a[i]>'1')
+           {
+               carry = 1;
+              a[i] = a[i]-2;
+           }
+           else{
+               carry=0;
+           }
+       }
+       if(carry)
+       {
+           a = '1'+a;
+       }
+       return a;
+    }
+};
