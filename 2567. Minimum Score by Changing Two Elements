@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int minimizeSum(vector<int>& nums) {
+         int n = nums.size();
+         sort(nums.begin(),nums.end());
+         if(n>=4)
+         {
+             int d1 = nums[n-1]-nums[2];
+             int d2 = nums[n-2]-nums[1];
+             int d3 = nums[n-3]-nums[0];
+             return min(d1,min(d2,d3));
+         }
+        else{
+            return 0;
+        }
+    }
+};
