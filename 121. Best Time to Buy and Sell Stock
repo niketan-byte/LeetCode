@@ -14,3 +14,34 @@ public:
         return res;
     }
 };
+
+
+class Solution {
+public:
+    int maxProfit(vector<int>prices)
+{
+stack<int>s;
+int max_profit=0;
+int n = prices.size();
+if(n==0)
+{
+    return 0;
+}
+s.push(prices[0]);
+int i=1;
+while(i<n)
+{
+    if(prices[i]<s.top())
+    {
+        s.push(prices[i]);
+    }
+    else{
+        int profit = prices[i]-s.top();
+        max_profit=max(max_profit,profit);
+
+    }
+i++;
+}
+return max_profit;
+}
+};
