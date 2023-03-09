@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int minSteps(string s, string t) {
+      map<char,int>mp;
+      for(auto i:s)
+      {
+       mp[i]++;
+      }  
+      for(auto i:t)
+      {
+          mp[i]--;
+      }
+      int ans =0;
+      for(auto i:mp)
+      {
+          if(i.second<0)
+          {
+              ans += abs(i.second);
+          }
+      }
+      return ans;
+    }
+};
+
+// l = 1   p = 1  1
+// e = 3   r = 1  1
+// t = 1   a = 1  1
+// c = 1   c = 2  ---
+// o = 1   t = 1  --- 
+// d = 1   i = 1  1
+//         e = 1  2 
