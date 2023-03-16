@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int countConsistentStrings(string allowed, vector<string>& words) {
+        int ans=0;
+        set<char>s;
+        for(int i=0;i<allowed.size();i++)
+        {
+            s.insert(allowed[i]);
+        }
+        for(int i=0;i<words.size();i++)
+        {
+            string str = words[i];
+            int res=0;
+            for(int j=0;j<str.size();j++)
+            {
+                if(s.find(str[j])==s.end())
+                {
+                    break;
+                }
+                else{
+                    res++;
+                }
+            }
+            if(res==str.size())
+            {
+                ans++;
+            }
+
+        }
+        return ans;
+    }
+};
