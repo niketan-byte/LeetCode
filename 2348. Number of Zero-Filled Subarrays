@@ -1,0 +1,21 @@
+class Solution {
+public:
+    long long zeroFilledSubarray(vector<int>& nums) {
+       long long int i=0,n=nums.size(),ans=0,cnt=0;
+       while(i<n)
+       {
+           while(i<n && nums[i])
+           {
+               i++;
+           }
+           cnt=0;
+           while(i<n && nums[i]==0)
+           {
+               cnt++;
+               i++;
+           }
+           ans += cnt*(cnt+1)/2;
+       }
+       return ans; 
+    }
+};
