@@ -37,3 +37,39 @@ public:
        }
     }
 };
+
+
+
+// Simple 
+
+// 90: Transpose + Reverse Rows
+// 180: Reverse Rows + Reverse columns or two time 90 degree
+// 270 : Transpose + Reverse Columns or negative of 90 degree (first do reverse and than transpose)
+
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+    
+    
+    // Transpose
+       for(int i=0;i<matrix.size();i++)
+       {
+           for(int j=i;j<matrix.size();j++)
+           {
+               swap(matrix[i][j],matrix[j][i]);
+           }
+       }
+      
+      // Swapping coloumns (reverse)
+       for(int i=0;i<matrix.size();i++){
+       int st=0;
+       int end=matrix.size()-1;
+       while(st<=end)
+       {
+           swap(matrix[i][st],matrix[i][end]);
+           st++;
+           end--;
+       } 
+       }
+    }
+};
