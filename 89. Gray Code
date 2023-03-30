@@ -1,0 +1,13 @@
+class Solution {
+public:
+    vector<int> grayCode(int n) {  
+        int N=pow(2,n);
+        vector<int>ans(N);
+        
+        for(int i=0;i<N;i++)
+        {
+            ans[i] = i^(i>>1);
+        }
+        return ans;
+       } 
+};
