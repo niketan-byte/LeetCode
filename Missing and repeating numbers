@@ -1,0 +1,27 @@
+// CodeStudio
+
+#include <bits/stdc++.h> 
+#include <bits/stdc++.h> 
+
+pair<int,int> missingAndRepeating(vector<int> &arr, long long int n)
+{
+	// Write your code here 
+
+	long long int S_ideal = (n*(n+1))/2;
+	long long int S_real = accumulate(arr.begin(),arr.end(),0);
+	long long ans_sub = S_ideal-S_real;
+	long long int S2_ideal = (n*(n+1)*(2*n+1))/6;
+	long long int S2_real = 0;
+	for(int i=0;i<n;i++)
+	{
+        S2_real += (long long int)arr[i]*(long long int)arr[i];
+	}
+    
+	long long int missing,ans_add = 0;
+    ans_add = (S2_ideal-S2_real)/ans_sub;
+	missing = (ans_add+ans_sub)/2;
+	long long int repeating = 0;
+	repeating = (ans_add-ans_sub)/2;
+	return {missing,repeating};
+
+	}
