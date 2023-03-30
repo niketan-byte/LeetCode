@@ -1,16 +1,44 @@
 class Solution {
 public:
-    int findDuplicate(vector<int>& nums) {
-        sort(nums.begin(),nums.end());
-        int count=0;
-            for(int i=0;i<nums.size()-1;i++)
-        {
-            if(nums[i]==nums[i+1])
-            {
-                count=nums[i];
-                break;
-            }
-        }
-    return count;
+    int findDuplicate(vector<int>& arr) {
+
+  // nlogn approach
+    //     sort(arr.begin(),arr.end());
+    // for(int i=0;i<arr.size()-1;i++)
+	// {
+    //     if(arr[i]==arr[i+1])
+	// 	{
+	// 		return arr[i];
+	// 	}
+	// }
+    // return arr.size();
+
+   // TC O(n) 
+//    int n = arr.size();
+//    long long int S_ideal = (n*(n+1))/2;
+//    long long int S_real = accumulate(arr.begin(),arr.end(),0);
+//    long long int S2_ideal = (n*(n+1)*(2*n+1))/6;
+//    long long int S2_real=0;
+//    for(int i=0;i<arr.size();i++)
+//    {
+//      S2_real += (long long int)(arr[i])*(long long int)(arr[i]);
+//    }
+//    long long int ans_sub = S_ideal-S_real;
+//    long long int ans_add = (S2_ideal-S2_real)/ans_sub;
+//    int missing = (ans_add+ans_sub)/2;
+//    int repeat = (ans_add-ans_sub)/2; 
+//    return repeat; 
+
+
+for(int i=0;i<arr.size();i++)
+{
+    int curr = abs(arr[i]);
+    if(arr[curr-1]<0)
+    {
+        return curr;
+    }
+    arr[curr-1] *= -1;
+}
+return -1;
     }
 };
