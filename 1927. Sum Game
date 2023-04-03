@@ -1,0 +1,66 @@
+class Solution {
+public:
+    bool sumGame(string num) {
+        int sum1=0;
+        int sum2=0;
+        int q1=0;
+        int q2=0;
+        for(int i=0;i<num.size()/2;i++)
+        {
+            if(num[i]=='?')
+            {
+             q1++;
+            }
+            else{
+                sum1 += num[i]-'0';
+            }
+        }
+        for(int i=num.size()/2;i<num.size();i++)
+        {
+            if(num[i]=='?')
+            {
+             q2++;
+            }
+            else{
+                sum2 += num[i]-'0';
+            }
+        }
+
+
+      // zero case 
+      if(q1==0 && q2==0)
+      {
+          if(sum1==sum2)
+          {
+              return 0;
+          }
+          else{
+              return 1;
+          }
+      }
+
+
+        // odd case
+           if(abs(q2-q1)%2)
+      {
+          return 1;
+      }
+
+
+     // even case
+    int mn = min(q1,q2);
+    q1 -= mn;
+    q2 -= mn;
+    return (sum1 + 9*q1/2 != sum2 + 9*q2/2);
+
+    // if(abs(q2-q1)%2==0)
+    // {
+    //     if(abs(sum2-sum1)%9==0)
+    //     {
+    //         return 0;
+    //     }
+    //     return 1;
+    // }
+    // return 1;
+    }
+};
