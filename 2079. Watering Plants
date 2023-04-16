@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int wateringPlants(vector<int>& plants, int capacity) {
+        int ans=1;
+        int refill=capacity;
+        capacity -= plants[0];
+
+        for(int i=0;i<plants.size()-1;i++)
+        {
+            if(plants[i+1]<=capacity)
+            {
+               capacity -= plants[i+1];
+               ans+=1;
+            }
+            else{
+                 capacity = refill-plants[i+1];
+                 ans += 2*i+3;
+            }
+        }
+        return ans;
+    }
+};
