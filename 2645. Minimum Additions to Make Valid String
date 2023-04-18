@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int addMinimum(string word) {
+        int cnt=0,i=0;
+        while(i<word.size())
+        {
+           word[i]=='a'?i++:cnt++;
+           word[i]=='b'?i++:cnt++;
+           word[i]=='c'?i++:cnt++;
+
+        }
+      
+       return cnt; 
+    }
+};
