@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int countPoints(string rings) {
+       map<int,set<char>>mp;
+       for(int i=0;i<rings.size();i+=2)
+       {
+           if(rings[i]=='R')
+           {
+               mp[rings[i+1]].insert('R');
+           }
+            else if(rings[i]=='G')
+           {
+               mp[rings[i+1]].insert('G');
+           }
+             else if(rings[i]=='B')
+           {
+               mp[rings[i+1]].insert('B');
+           }
+
+       }
+       int ans=0;
+       for(auto &i:mp)
+       {
+            set<char>& values = i.second;
+           if(values.size()==3)
+           {
+               ans++;
+           }
+       }
+       return ans; 
+    }
+};
