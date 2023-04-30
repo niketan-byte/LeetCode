@@ -17,3 +17,31 @@ public:
         return ans;
     }
 };
+
+class Solution {
+public:
+    vector<vector<int>> largestLocal(vector<vector<int>>& grid) {
+        int n = grid.size();
+        vector<vector<int>>vec(n-2,vector<int>(n-2));
+        for(int i=1;i<n-1;i++)
+        {
+            for(int j=1;j<n-1;j++)
+            {
+                int a = i-1;
+                int b = j-1;
+                int c = i+1;
+                int d = j+1;
+                int mx = INT_MIN;
+                for(int k=a;k<=c;k++)
+                {
+                    for(int l=b;l<=d;l++)
+                    {
+                        mx = max(mx,grid[k][l]);
+                    }
+                }
+                vec[i-1][j-1]=mx;
+            }
+        }
+        return vec;
+    }
+};
