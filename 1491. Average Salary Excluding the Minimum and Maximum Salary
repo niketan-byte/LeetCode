@@ -8,3 +8,6 @@ public:
      return (sum-mn-mx)*1.0/(salary.size()-2);
     }
 };
+
+
+
