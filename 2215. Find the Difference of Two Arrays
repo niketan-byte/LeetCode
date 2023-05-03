@@ -34,3 +34,34 @@ public:
         return ans;
     }
 };
+
+
+class Solution {
+public:
+    vector<vector<int>> findDifference(vector<int>& nums1, vector<int>& nums2) {
+        vector<vector<int>>vec;
+        set<int>s1,s2;
+      for(auto i:nums1)
+      {
+          s1.insert(i);
+      }
+      for(auto i:nums2)
+      {
+          s2.insert(i);
+      }
+       vector<int>ans;
+        set_difference(begin(s1), end(s1),  
+                 begin(s2), end(s2),  
+                 inserter(ans, end(ans)));  
+      vec.push_back(ans);
+
+      
+      vector<int>ans2;
+        set_difference(begin(s2), end(s2),  
+                 begin(s1), end(s1),  
+                 inserter(ans2, end(ans2)));  
+     
+      vec.push_back(ans2);
+      return vec;
+    }
+};
