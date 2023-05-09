@@ -48,6 +48,7 @@ public:
             direction=1;
             }
         }
+        
         return ans;
     }
 };
