@@ -73,3 +73,35 @@ public:
         
 //     }
 // };
+
+
+class Solution {
+public:
+    ListNode* swapNodes(ListNode* head, int k) {
+        int sz=0;
+        ListNode* temp = head;
+        while(temp!=NULL)
+        {
+            sz++;
+            temp = temp->next;
+        }
+        temp = head;
+        int l = k-1;
+        int r = sz-k;
+        while(l--)
+        {
+            temp = temp->next;
+        }
+        int x = temp->val;
+        ListNode* temp2 = head;
+        while(r--)
+        {
+              temp2 = temp2->next;
+        }
+        int y = temp2->val;
+        temp->val = y;
+        temp2->val = x;
+        return head; 
+
+    }
+};
