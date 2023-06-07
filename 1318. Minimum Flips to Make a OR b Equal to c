@@ -1,0 +1,44 @@
+class Solution {
+public:
+    void decToBin(int n,vector<int>&vec)
+    {
+        int i=0;
+        while(n>0)
+        {
+            vec[i] = n%2;
+            n /= 2;
+            i++;
+        }
+    }
+    int minFlips(int a, int b, int c) {
+        vector<int>vec1(32,0);
+        vector<int>vec2(32,0);
+        vector<int>vec3(32,0);
+
+        decToBin(a,vec1);
+        decToBin(b,vec2);
+        decToBin(c,vec3);
+        int ans=0;
+        for(int i=0;i<32;i++)
+        {
+            int c_fake = vec1[i] | vec2[i];
+            if(c_fake!=vec3[i])
+            {
+                if(c_fake==1 && vec3[i]==0){
+                if(vec1[i]==1 && vec2[i]==1)
+                {
+                   ans+=2;
+                }
+                else{
+                    ans+=1;
+                }
+                }
+                else{
+                    ans+=1;
+                }
+            }
+        }
+return ans;
+        
+    }
+};
