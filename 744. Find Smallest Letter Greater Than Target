@@ -1,0 +1,19 @@
+class Solution {
+public:
+    char nextGreatestLetter(vector<char>& letters, char target) {
+        vector<int>vec(26,0);
+        for(int i=0;i<letters.size();i++)
+        {
+            vec[letters[i]-'a']=1;
+        }
+        int n = target-'a';
+        for(int i=n+1;i<vec.size();i++)
+        {
+           if(vec[i]==1)
+           {
+               return i+'a';
+           }
+        }
+        return letters[0];
+    }
+};
