@@ -1,0 +1,48 @@
+// class Solution {
+// public:
+//     int pivotIndex(vector<int>& nums) {
+//         int ans=-1,res;
+//         int sum=0;
+//         vector<int>P;
+//         // for(int i=0;i<nums.size();i++)
+//         //     {  sum+=nums[i];
+//         //        P.push_back(sum);
+//         //     }
+     
+//         for(int i=0;i<nums.size();i++)
+//         {  int sumL=0,sumR=0;
+//             for(int j=0;j<i;j++)
+//             {
+//                 sumL+=nums[j];
+//             }
+//             for(int k=i+1;k<nums.size();k++)
+//             {
+//                 sumR+=nums[k];
+//             }
+//              // cout<<sumL<<" "<<sumR<<endl;
+//             if(sumR==sumL && i!=-1)
+//             {
+//                ans=i;
+//                 break;
+//             }
+//         }
+//         return ans;
+//     }
+// };
+
+class Solution {
+public:
+    int pivotIndex(vector<int>& nums) {
+        int sum=0,lsum=0;
+        sum = accumulate(nums.begin(),nums.end(),sum);
+        for(int i=0;i<nums.size();i++)
+        {
+            if(2*lsum==sum-nums[i])
+            {
+                return i;
+            }
+        lsum+=nums[i];
+    }
+        return -1;
+    }     
+};
