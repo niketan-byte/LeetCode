@@ -1,0 +1,12 @@
+class Solution {
+public:
+    int maxProfit(vector<int>& prices, int fee) {
+        int currBuy=INT_MIN,currSell=0;
+        for(auto i:prices)
+        {
+            currBuy=max(currBuy, currSell-i);
+            currSell=max(currSell,currBuy+i-fee);
+        }
+        return currSell;
+    }
+};
