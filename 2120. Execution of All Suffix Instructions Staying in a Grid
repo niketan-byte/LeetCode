@@ -1,0 +1,43 @@
+class Solution {
+public:
+    vector<int> executeInstructions(int n, vector<int>& startPos, string s) {
+    
+        vector<int>ans;
+       
+        for(int i=0;i<s.size();i++)
+        {
+            int a=startPos[0];
+            int b=startPos[1];
+            int res=0;
+            for(int j=i;j<s.size();j++)
+            {
+                if(s[j]=='R')
+                {
+                   b++;
+                }
+                if(s[j]=='L')
+                {
+                    b--;
+                }
+                if(s[j]=='U')
+                {
+                    a--;
+                }
+                if(s[j]=='D')
+                {
+                    a++;
+                }
+                if(a<0 || b<0 || a>=n || b>=n)
+                {
+                    break;
+                }
+                else{
+                    res++;
+                }
+            }
+            ans.push_back(res);
+
+        }
+        return ans;
+    }
+};
