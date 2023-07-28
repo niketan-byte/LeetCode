@@ -8,6 +8,27 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
+// class Solution {
+// public:
+//     ListNode* middleNode(ListNode* head) {
+//         ListNode* temp=head;
+//         int cnt=0;
+//         while(temp!=NULL)
+//         {
+//               cnt++;
+//               temp = temp->next;
+//         }
+//         cnt = cnt/2 + 1;
+//         ListNode* temp1=head;
+//         while(--cnt)
+//         {
+//            temp1=temp1->next;
+//         }
+//         return temp1;
+//     }
+// };
+
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
@@ -15,13 +36,13 @@ public:
         {
             return head;
         }
-        ListNode* slow = head;
-        ListNode* fast = head->next->next;
-        while(fast!=NULL && fast->next!=NULL)
-        {
-            slow=slow->next;
-            fast=fast->next->next;
-        }
-        return slow->next;
+       ListNode* slow=head;
+       ListNode* fast=head->next->next;
+       while(fast!=NULL && fast->next!=NULL)
+       {
+           slow = slow->next;
+           fast = fast->next->next;
+       }
+       return slow->next;
     }
 };
