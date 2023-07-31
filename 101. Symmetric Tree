@@ -29,6 +29,7 @@ bool check(TreeNode* root1, TreeNode* root2)
         return check(root1->left,root2->right) && check(root1->right, root2->left);
         
 }
+
     bool isSymmetric(TreeNode* root) {
        if(!root)
         {
