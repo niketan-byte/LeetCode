@@ -1,40 +1,74 @@
+// class Solution {
+// public:
+//     void setZeroes(vector<vector<int>>& matrix) {
+//         set<int>r;
+//         set<int>c;
+//         for(int i=0;i<matrix.size();i++)
+//         {
+//             for(int j=0;j<matrix[0].size();j++)
+//             {
+//                 if(matrix[i][j]==0)
+//                 {
+//                     r.insert(i);
+//                     c.insert(j);
+//                 }
+//             }
+//         }
+//         set<int>:: iterator it;
+//  for( it = r.begin(); it!=r.end(); ++it){
+//     int row = *it;
+      
+//             for(int j=0;j<matrix[0].size();j++)
+//             {
+//                 matrix[row][j]=0;
+//             }
+            
+//         }
+
+//  set<int>:: iterator it1;
+//  for( it1 = c.begin(); it1!=c.end(); ++it1){
+//     int col = *it1;
+        
+//             for(int j=0;j<matrix.size();j++)
+//             {
+//                 matrix[j][col]=0;
+//             }
+            
+//         }
+
+//     }
+// };
+
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
-        set<int>r;
-        set<int>c;
-        for(int i=0;i<matrix.size();i++)
+    set<int>r;
+    set<int>c;
+    for(int i=0;i<matrix.size();i++)
+    {
+        for(int j=0;j<matrix[0].size();j++)
         {
-            for(int j=0;j<matrix[0].size();j++)
+            if(matrix[i][j]==0)
             {
-                if(matrix[i][j]==0)
-                {
-                    r.insert(i);
-                    c.insert(j);
-                }
+                r.insert(i);
+                c.insert(j);
             }
         }
-        set<int>:: iterator it;
- for( it = r.begin(); it!=r.end(); ++it){
-    int row = *it;
-      
-            for(int j=0;j<matrix[0].size();j++)
-            {
-                matrix[row][j]=0;
-            }
-            
+    }
+    for(auto i:r)
+    {
+        for(int j=0;j<matrix[0].size();j++)
+        {
+            matrix[i][j]=0;
         }
-
- set<int>:: iterator it1;
- for( it1 = c.begin(); it1!=c.end(); ++it1){
-    int col = *it1;
-        
-            for(int j=0;j<matrix.size();j++)
-            {
-                matrix[j][col]=0;
-            }
-            
+    }
+       for(auto i:c)
+    {
+        for(int j=0;j<matrix.size();j++)
+        {
+            matrix[j][i]=0;
         }
-
+    }
+    
     }
 };
