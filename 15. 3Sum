@@ -82,10 +82,7 @@ public:
                     {
                         st++;
                     }
-                    while(st<end && nums[end]==nums[end+1])
-                    {
-                        end--;
-                    }
+                
                 }
             }
             while(i<n-2 && nums[i]==nums[i+1])
