@@ -1,0 +1,29 @@
+
+class Solution{
+    public:
+    int maxLen(vector<int>&A, int n)
+    {   
+        int ans =0,sum=0;
+        // Your code here
+        map<int,int>mp,mp1;
+        for(int i=0;i<A.size();i++)
+        {
+            sum += A[i];
+            if(sum==0)
+            {
+                ans = max(ans,i+1);
+            }
+            
+            mp[sum]++;
+            if(mp[sum]>1)
+            {
+                ans = max(ans, i-mp1[sum]);
+            }
+            else{
+                mp1[sum]=i;
+            }
+            
+        }
+        return ans;
+    }
+};
