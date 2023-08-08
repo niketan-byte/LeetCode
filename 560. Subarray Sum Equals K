@@ -1,27 +1,46 @@
 class Solution {
 public:
     int subarraySum(vector<int>& nums, int k) {
-     vector<long long int>ps;
-     long long int sum = 0;
-     for(int i=0;i<nums.size();i++)
-     {
-         sum += nums[i];
-         ps.push_back(sum);
-     }   
-   int ans=0;
+    //  vector<long long int>ps;
+//      long long int sum = 0;
+//      for(int i=0;i<nums.size();i++)
+//      {
+//          sum += nums[i];
+//          ps.push_back(sum);
+//      }   
+//    int ans=0;
+//    map<int,int>mp;
+//    for(int i=0;i<nums.size();i++)
+//    {
+//        if(ps[i]==k)
+//        {
+//            ans++;
+//        }
+//        if(mp.find(ps[i]-k)!=mp.end())
+//        {
+//            ans += mp[ps[i]-k];
+//        }
+//        mp[ps[i]]++;
+//    }
+//    return ans;
+
    map<int,int>mp;
+   int sum=0;
+   int ans=0;
    for(int i=0;i<nums.size();i++)
    {
-       if(ps[i]==k)
-       {
-           ans++;
-       }
-       if(mp.find(ps[i]-k)!=mp.end())
-       {
-           ans += mp[ps[i]-k];
-       }
-       mp[ps[i]]++;
+        sum += nums[i];
+        if(sum==k)
+        {
+            ans++;
+        }
+        if(mp.find(sum-k)!=mp.end())
+        {
+            ans += mp[sum-k];
+        }
+     
+            mp[sum]++;
    }
-   return ans;
+  return ans;
     }
 };
