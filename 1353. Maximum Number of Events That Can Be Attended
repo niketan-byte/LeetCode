@@ -1,0 +1,38 @@
+class Solution {
+public:
+   static bool cmp(vector<int> &a,vector<int> &b)
+   {
+       if(a[1]==b[1])
+       {
+           return a[0]<b[0];
+       }
+       return a[1]<b[1];
+   }
+    int maxEvents(vector<vector<int>>& events) {
+        sort(events.begin(),events.end(),cmp);
+        int ans=1;
+        int st=events[0][0];
+        int end = events[0][1];
+        // for(int i=0;i<events.size();i++)
+        // {
+        //     for(int j=0;j<2;j++){
+        //     cout<<events[i][j]<<" ";
+        //     }
+        //     cout<<endl;
+        // }
+        for(int i=0;i<events.size()-1;i++)
+        {
+            if(st==events[i+1][0] && end==events[i+1][1])
+            {
+                ans++;
+            }
+            if(end<=events[i+1][0])
+            {
+                st = events[i+1][0];
+                end = events[i+1][1]; 
+                ans++;
+            }
+        }
+        return ans;
+    }
+};
