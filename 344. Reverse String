@@ -29,3 +29,20 @@ public:
         }
     }
 };
+
+
+class Solution {
+public:
+   void RRstring(vector<char>&s, int st,int end)
+   {
+       if(st>end)
+       {
+           return;
+       }
+       swap(s[st],s[end]);
+       RRstring(s,st+1,end-1);
+   }
+    void reverseString(vector<char>& s) {
+        RRstring(s,0,s.size()-1);
+    }
+};
