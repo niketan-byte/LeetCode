@@ -1,0 +1,28 @@
+class Solution {
+public:
+void solve(vector<int>& nums,vector<vector<int>>& ans,vector<int> out,int idx)
+{
+    if(idx>=nums.size())
+    {
+        ans.push_back(out);
+        return;
+    }
+
+
+    // exclude
+    solve(nums,ans,out,idx+1);
+
+    //include
+    int ele = nums[idx];
+    out.push_back(ele);
+    solve(nums,ans,out,idx+1);
+
+}
+    vector<vector<int>> subsets(vector<int>& nums) {
+    vector<vector<int>>ans;
+    vector<int>out;
+    int idx=0;
+    solve(nums,ans,out,idx); 
+    return ans;   
+    }
+};
