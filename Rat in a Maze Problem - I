@@ -1,0 +1,92 @@
+class Solution{
+    public:
+    bool isSafe(int newx,int newy, int n, vector<vector<int>> &m, vector<vector<int>> &vis)
+    {
+        if((newx>=0 && newx<n) && (newy>=0 && newy<n) && vis[newx][newy]==0 && m[newx][newy]==1)
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    void solve(vector<vector<int>> &m, int n, int srcx,int srcy, vector<string>&ans, vector<vector<int>> &vis, string out)
+    {
+        if(srcx==n-1 && srcy==n-1)
+        {
+            ans.push_back(out);
+            return;
+        }
+        
+        vis[srcx][srcy]=1;
+        // solve
+        
+        // down
+        
+        int newx=srcx+1;
+        int newy=srcy;
+        if(isSafe(newx,newy,n,m,vis))
+        {
+            out.push_back('D');
+            solve(m,n,newx,newy,ans,vis,out);
+            out.pop_back();
+        }
+        
+        // right
+        newx=srcx;
+        newy=srcy+1;
+        if(isSafe(newx,newy,n,m,vis))
+        {
+            out.push_back('R');
+            solve(m,n,newx,newy,ans,vis,out);
+            out.pop_back();
+        }
+        
+        // left
+        newx=srcx;
+        newy=srcy-1;
+        if(isSafe(newx,newy,n,m,vis))
+        {
+            out.push_back('L');
+            solve(m,n,newx,newy,ans,vis,out);
+            out.pop_back();
+        }
+        
+        //up
+        newx=srcx-1;
+        newy=srcy;
+        if(isSafe(newx,newy,n,m,vis))
+        {
+            out.push_back('U');
+            solve(m,n,newx,newy,ans,vis,out);
+            out.pop_back();
+        }
+        
+        vis[srcx][srcy]=0;
+        
+        
+    }
+    vector<string> findPath(vector<vector<int>> &m, int n) {
+        // Your code goes here
+        int srcx=0,srcy=0;
+        vector<string>ans;
+        if(m[0][0]==0)
+        {
+            return ans;
+        }
+        string out="";
+        vector<vector<int>> vis = m;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                vis[i][j]=0;
+            }
+        }
+        
+        solve(m,n,srcx,srcy,ans,vis,out);
+        sort(ans.begin(),ans.end());
+        return ans;
+        
+    }
+};
