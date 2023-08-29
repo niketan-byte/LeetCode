@@ -1,0 +1,69 @@
+class Solution {
+public:
+void nextPermutation(vector<int>& nums) {
+        // next_permutation(begin(nums),end(nums));
+      
+      int n=nums.size(),k,l;
+      for(k=n-2;k>=0;k--)
+      {
+        if(nums[k]<nums[k+1])
+        {
+            break;
+        }
+      }
+      if(k<0)
+      {
+        reverse(nums.begin(),nums.end());
+      }
+      else{
+          for(l=n-1;l>k;l--)
+          {
+              if(nums[l]>nums[k])
+              {
+                break;
+              }
+          }
+          swap(nums[k],nums[l]);
+          reverse(nums.begin()+k+1,nums.end());
+      }
+}
+    string getPermutation(int n, int k) {
+        vector<int> nums(n);
+        vector<int> factorial(n+1, 1);
+        for (int i = 0; i < n; ++i) {
+            nums[i] = i + 1;
+            if (i > 0) {
+                factorial[i] = factorial[i - 1] * i;
+            }
+        }
+        factorial[n] = factorial[n-1]*n;
+        
+
+    //     int sz = factorial[n]/n;    // sz = 6/3 = 2
+    //     --k;                           // k = 3-1 = 2
+    //     int part = k/sz;             // part =  1   (0,1,2)
+    //    swap(nums[0],nums[part]);
+    //    for(auto i:nums)
+    //    {
+    //          cout<<i<<" ";
+            
+    //    }
+    //   k -= sz*part;
+       string result;
+    //    for(int i=0;i<nums.size();i++)
+    //    {
+    //        result += to_string(nums[i]);
+    //    }
+    //    cout<<k<<" ";
+    k--;
+       while(k--)
+       {
+          nextPermutation(nums);
+       }
+ for(int i=0;i<nums.size();i++)
+       {
+           result += to_string(nums[i]);
+       }
+         return result;
+    }
+};
