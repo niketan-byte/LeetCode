@@ -1,5 +1,6 @@
 class Solution {
 public:
+
     vector<vector<int>> minimumAbsDifference(vector<int>& arr) {
       int mn =INT_MAX;
         vector<vector<int>>vec;
