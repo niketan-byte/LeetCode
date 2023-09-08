@@ -1,0 +1,44 @@
+class Solution {
+public:
+void helper(int idx,vector<string>&ans, int n,string &s, int first, int last)
+{
+    // base case
+    if(idx==n)
+    {
+        ans.push_back(s);
+        return;
+    }
+
+    // this is for opening brackets
+    if(first>0 && idx!=n-1)
+    {
+        s += "(";
+        helper(idx+1,ans,n,s,first-1,last);
+        s.pop_back();
+    }
+
+    // this is for closing brackets
+    if(last>0 && first<last)
+    {
+          s += ")";
+          helper(idx+1,ans,n,s,first,last-1);
+          s.pop_back();
+    }
+
+    return ;
+
+}
+
+
+    vector<string> generateParenthesis(int n) {
+        vector<string>ans;
+        int first = n-1;
+        int last = n;
+        n *= 2;
+        string s = "(";
+
+        helper(1,ans,n,s,first,last);
+
+        return ans;
+    }
+};
