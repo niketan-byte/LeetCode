@@ -6,6 +6,7 @@ public:
        long a2,e2,i2,o2,u2;
        for(int j=2;j<=n;j++)
        {
+
            a2 = (e+i+u)%mod;
            e2 = (a+i)%mod;
            i2 = (e+o)%mod;
