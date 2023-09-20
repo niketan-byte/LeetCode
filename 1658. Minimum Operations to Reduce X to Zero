@@ -1,32 +1,34 @@
 class Solution {
 public:
-    int minOperations(vector<int>& nums, int x) {
-        int target=-x;
-        for(int i:nums)
-        {
-            target+=i;
+ int minOperations(vector<int>& nums, int X) {
+        int n = nums.size();
+        int targetSum = accumulate(nums.begin(), nums.end(), 0) - X;
+
+        if (targetSum < 0) {
+            return -1; // If it's not possible to reach the target sum
         }
-        if(target<0)
-            return -1;
-        int j=0;
-        int sum=0;
-        int ans=INT_MIN;
-        int n=nums.size();
-        for(int i=0;i<n;i++)
-        {
-            sum+=nums[i]; 
-            while(sum>target)
-            {
-                sum-=nums[j];
-                j++;
+
+        if (targetSum == 0) {
+            return n; // If the target sum is the sum of all elements, return n
+        }
+
+        int maxLength = -1;
+        int currentSum = 0;
+        int left = 0;
+
+        for (int right = 0; right < n; ++right) {
+            currentSum += nums[right];
+
+            while (currentSum > targetSum) {
+                currentSum -= nums[left];
+                left++;
             }
-            if(sum==target)
-            {
-                ans=max(ans,i-j+1);
+
+            if (currentSum == targetSum) {
+                maxLength = max(maxLength, right - left + 1);
             }
         }
-        return ans==INT_MIN?-1:n-ans;
+
+        return maxLength != -1 ? n - maxLength : -1;
     }
 };
-
-
