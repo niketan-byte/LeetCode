@@ -1,0 +1,22 @@
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        int p=0;
+        int n = s.size();
+        int i=0,m=t.size();
+        while(i<m)
+        {
+            if(t[i]==s[p])
+            {
+                p++;
+            }
+            i++;
+        }
+        cout<<p;
+        if(p==n)
+        {
+            return true;
+        }
+        return false;
+    }
+};
