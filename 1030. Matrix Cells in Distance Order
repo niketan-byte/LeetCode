@@ -1,6 +1,5 @@
 class Solution {
 public:
-    
     vector<vector<int>> allCellsDistOrder(int rows, int cols, int rCenter, int cCenter) {
         vector<vector<int>> res;
         auto cmp = [ rCenter, cCenter](vector<int>&a,vector<int>&b)
