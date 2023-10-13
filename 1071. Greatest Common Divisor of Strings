@@ -20,6 +20,7 @@ public:
     //     }
     //     return gcd(a.substr(b.size()),b);
     // }
+
     string gcdOfStrings(string s1, string s2) {
     // return gcd(str1,str2);
     
