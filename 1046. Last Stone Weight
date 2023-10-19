@@ -6,6 +6,7 @@ public:
         {
             pq.push(i);
         }
+
         while(pq.size()>1)
         {
             int a = pq.top();
