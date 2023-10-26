@@ -1,0 +1,42 @@
+class Solution {
+const int MOD = 1e9+7;    
+public:
+    int numFactoredBinaryTrees(vector<int>& arr) {
+        sort(arr.begin(),arr.end());
+
+        unordered_set<int>uni(arr.begin(),arr.end());
+
+        unordered_map<int,int>dp;
+        for(int num:arr)
+        {
+            dp[num]=1;
+        }
+        for(int i:arr)
+        {
+            for(int j:arr)
+            {
+                if(j>sqrt(i))
+                {
+                    break;
+                }
+                if(i%j==0 && uni.find(i/j)!=uni.end()){
+                  long long temp = static_cast<long long>(dp[j]) * dp[i / j];
+
+                    if(i/j==j)
+                    {
+                        dp[i] = (dp[i]+temp)%MOD;
+                    }
+                    else{
+                        dp[i] = (dp[i]+temp*2)%MOD;
+                    }
+                }
+            }
+        }
+        long long res=0;
+        for(auto& [_,val]:dp)
+        {
+            res = (res+val)%MOD;
+        }
+        return res;
+    }
+};
