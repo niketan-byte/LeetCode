@@ -1,3 +1,4 @@
+
 class Solution {
 public:
  bool static cmp(int x,int y)
