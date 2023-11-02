@@ -15,8 +15,7 @@
 //                  e_sum += costs[i][0];
 //             }
 //             ans = e_sum;
-//         }
-          
+//         }          
 //         for(int i=0;i<costs.size();i++)
 //         {
 //              if(costs[i][0]<costs[i][1])
