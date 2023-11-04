@@ -17,5 +17,6 @@ public:
             }
         }
         return n-dp[n][n];
-    }
+    
+}
 };
