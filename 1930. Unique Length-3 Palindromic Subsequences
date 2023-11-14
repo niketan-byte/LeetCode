@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int countPalindromicSubsequence(string s) {
+     vector<int>minArr(26,INT_MAX);
+     vector<int>maxArr(26,INT_MIN);
+
+     for(int i=0;i<s.size();i++)
+     {
+         int chIndex = s[i]-'a';
+         minArr[chIndex] = min(minArr[chIndex],i);
+         maxArr[chIndex] = max(maxArr[chIndex],i);
+     }
+     int cnt=0;
+      for(int ch=0;ch<26;ch++)
+      {
+          if(minArr[ch]==INT_MAX || maxArr[ch]==INT_MIN)
+          {
+              continue;
+          }
+          unordered_set<char>uniqueChar;
+
+          for(int j=minArr[ch]+1;j<maxArr[ch];j++)
+          {
+              uniqueChar.insert(s[j]);
+          }
+          cnt += uniqueChar.size();
+      }
+     return cnt;   
+    }
+};
