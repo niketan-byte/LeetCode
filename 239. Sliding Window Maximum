@@ -7,7 +7,6 @@ public:
            st.insert(nums[i]);
 
        }
-          
           vector<int>ans;
           auto it = st.begin();
           ans.push_back(*it);
