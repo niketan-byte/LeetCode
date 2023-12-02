@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int countCharacters(vector<string>& words, string chars) {
+        map<char,int>mp;
+        for(int i=0;i<chars.size();i++)
+        {
+           mp[chars[i]]++;
+        }
+        int ans = 0; 
+        for(int i=0;i<words.size();i++)
+        {
+            string s = words[i];
+         map<char, int> temp_mp = mp;  
+            bool flag = true;
+            for (int j = 0; j < s.size(); j++) {
+                char ch = s[j];
+                if (temp_mp.find(ch) == temp_mp.end() || temp_mp[ch] == 0) {
+                    flag = false;
+                    break;
+                } else {
+                    temp_mp[ch]--;
+                }
+            }
+            if (flag) {
+                ans += s.length();
+            }
+        }
+        return ans;
+    }
+};
