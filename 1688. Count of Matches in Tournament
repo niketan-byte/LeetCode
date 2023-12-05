@@ -4,3 +4,24 @@ public:
         return n-1;
     }
 };
+
+class Solution {
+public:
+    int numberOfMatches(int n) {
+        int match=0;
+        int team=n;
+        while(team>1){
+            if(team%2==0){
+                match += team/2;
+                team = ceil(team/2);
+            }
+            else{
+                match += (team-1)/2;
+                team = (team-1)/2 + 1;
+            }
+            // team = floor(team/2);
+            // cout<<"Teams = "<<team<<"\tMatches = "<<match<<"\n";
+        }
+        return match;
+    }
+};
