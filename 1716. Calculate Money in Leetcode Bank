@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int totalMoney(int n) {
+      int week = n/7;
+      int rem = n%7;
+
+      int total = week*28;
+      total += (((week)*(week-1))/2)*7;
+      total += ((rem*(rem+1))/2) + (rem*week);
+      return total;
+
+    }
+};
