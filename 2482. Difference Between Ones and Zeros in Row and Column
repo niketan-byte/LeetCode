@@ -36,7 +36,6 @@ public:
             }
             col.push_back(make_pair(zeroCol,onesCol));
         }
-
         for(int i=0;i<grid.size();i++)
         {
             vector<int>res;
