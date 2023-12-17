@@ -1,0 +1,62 @@
+class Food{
+    public:
+    int fr;
+    string foodn;
+
+    Food(int fr,string foodn){
+        this->fr = fr;
+        this->foodn = foodn;
+    }
+
+    bool operator<(const Food& other) const{
+        if(fr==other.fr){
+            return foodn>other.foodn;
+        }
+        return fr<other.fr;
+    }
+};
+
+
+class FoodRatings {
+    unordered_map<string,int>frm;
+    unordered_map<string,string>fcm;
+     // Store all food of a cusine in priority queue (to sort them on ratings/name)
+    // Priority queue element -> Food: (foodRating, foodName)
+    unordered_map<string,priority_queue<Food>>cfm;
+public:
+    FoodRatings(vector<string>& foods, vector<string>& cuisines, vector<int>& ratings) {
+        for(int i=0;i<foods.size();i++){
+            frm[foods[i]]=ratings[i];
+            fcm[foods[i]]=cuisines[i];
+
+            cfm[cuisines[i]].push(Food(ratings[i],foods[i]));
+        }
+    }
+
+
+    
+    void changeRating(string food, int newRating) {
+        frm[food]=newRating;
+        auto cui = fcm[food];
+        cfm[cui].push(Food(newRating,food));
+    }
+    
+    string highestRated(string cuisine) {
+        auto highestRated = cfm[cuisine].top();
+
+        while(frm[highestRated.foodn]!=highestRated.fr){
+            cfm[cuisine].pop();
+            highestRated = cfm[cuisine].top();
+        }
+    
+    
+    return highestRated.foodn;
+    }
+};
+
+/**
+ * Your FoodRatings object will be instantiated and called as such:
+ * FoodRatings* obj = new FoodRatings(foods, cuisines, ratings);
+ * obj->changeRating(food,newRating);
+ * string param_2 = obj->highestRated(cuisine);
+ */
