@@ -1,0 +1,44 @@
+class Solution {
+public:
+    int minOperations(string s) {
+        int ans=0;
+        int n = s.size();
+        string one="";
+        string zero="";
+        string toggle="1";
+        for(int i=0;i<n;i++){
+          one += toggle;
+          if(toggle=="1"){
+          toggle = "0";
+          }
+          else{
+              toggle="1";
+          }
+        }
+        toggle="0";
+        for(int i=0;i<n;i++){
+          zero += toggle;
+          if(toggle=="1"){
+          toggle = "0";
+          }
+          else{
+              toggle="1";
+          }
+        }
+        int o=0,z=0;
+       for(int i=0;i<n;i++)
+       {
+           if(zero[i]!=s[i])
+           {
+               z++;
+           }
+           if(one[i]!=s[i])
+           {
+               o++;
+           }
+
+       }
+       ans = min(o,z);
+        return ans;
+    }
+};
