@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int jobScheduling(vector<int>& s, vector<int>& e, vector<int>& p) {
+    int n = p.size();
+    vector<vector<int>>jobs;
+    for(int i=0;i<n;i++)
+    {
+        jobs.push_back({s[i],e[i],p[i]});
+    }
+    sort(jobs.begin(),jobs.end());
+    vector<int>dp(n+1,0);
+
+    for(int idx=n-1;idx>=0;idx--){
+        int notTake = dp[idx+1];
+        vector<int>v = {jobs[idx][1],0,0};
+        int next = lower_bound(jobs.begin(),jobs.end(),v)-jobs.begin();
+        int take = jobs[idx][2] + dp[next];
+        dp[idx] = max(take,notTake);
+    }
+    return dp[0];
+    }
+};
