@@ -19,4 +19,27 @@ public:
     }
 };
 
-
+class Solution {
+public:
+    int diff=0;
+    void differ(TreeNode* root,int mn,int mx){
+        if(!root){
+            return;
+        }
+        diff = max(diff,max(abs(root->val-mn),abs(mx-root->val)));
+        mn = min(mn,root->val);
+        mx = max(mx,root->val);
+        differ(root->left,mn,mx);
+        differ(root->right,mn,mx);
+        
+    }
+    int maxAncestorDiff(TreeNode* root) {
+        if(!root){
+            return 0;
+        }
+        int mn = root->val;
+        int mx = root->val;
+        differ(root,mn,mx);
+        return diff;
+    }
+};
