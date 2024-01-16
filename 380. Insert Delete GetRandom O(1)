@@ -2,9 +2,7 @@ class RandomizedSet {
 public:
     set<int>st;
     RandomizedSet() {
-        
     }
-    
     bool insert(int val) {
         if(!st.count(val)){
         st.insert(val);
